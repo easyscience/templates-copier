@@ -1,0 +1,26 @@
+project_name:
+  type: str
+  help: What is the project name?
+
+package_name:
+  default: '{{project_name|lower}}'
+  type: str
+  help: What is the project's python package name (should be small caps)?
+
+description:
+  type: str
+  help: What is the project description?
+
+site_url:
+  type: str
+  help: What is the project's website URL?
+
+docs_url:
+  type: str
+  help: What is the project's documentation URL?
+
+repo:
+  type: str
+  help: What is the project's repository under EasyScience organization?
+
+year: 2025
