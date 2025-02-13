@@ -11,7 +11,12 @@ template_type:
     - project-app
 
 # Set the subdirectory dynamically based on user choice
-_subdirectory: "templates/{{ template_type }}"
+#_subdirectory: "templates/{{ template_type }}"
+
+# Define multiple template sources
+_sources:
+  - "templates/{{ template_type }}"  # based on user choice
+  - "templates/common"  # common files
 
 # Ask the user for other project details
 
