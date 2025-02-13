@@ -21,16 +21,15 @@ _answers_file: ".copier-answers_{{ template_type }}.yml"
 # Set the main subdirectory dynamically based on user choice
 _subdirectory: "templates/{{ template_type }}"
 
-# Define multiple extra sources (fetch these templates temporarily)
+# Define multiple extra sources to copy files from
 #_sources:
 #  - "templates/common"
 
-# Copy files from extra sources to the top-level project directory and
-# remove temporary directories
+# Define multiple tasks to run after copying files
 #_tasks:
-#  - cp -r templates/common/* .       # Move common files to root
-#  - rm -rf templates/project-lib      # Remove the project-lib directory
-#  - rm -rf templates/common           # Remove the common directory
+#  - cp -r templates/common/* .     # Move common files to root
+#  - rm -rf templates/project-lib   # Remove the project-lib directory
+#  - rm -rf templates/common        # Remove the common directory
 
 
 # Ask the user for other project details
@@ -65,4 +64,7 @@ repo:
   type: str
   help: What is the project's repository under EasyScience organization?
 
-year: 2024
+year:
+  when: "{{ template_type == 'common' }}"
+  type: int
+  help: What is the project's copyright year?
