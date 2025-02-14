@@ -18,8 +18,14 @@ _min_copier_version: "9.0.0"
 # Define where to store answers
 #_answers_file: ".copier-answers_{{ template_type }}.yml"
 
+# Define where to store answers
+_answers_file: ".copier-answers.yml"
+
 # Set the main subdirectory dynamically based on user choice
 #_subdirectory: "templates/{{ template_type }}"
+
+# Dynamically set `_subdirectory` based on an environment variable, or fallback to 'templates/project'
+_subdirectory: "{{ COPIER_SUBDIRECTORY | default('templates/project') }}"
 
 # Define multiple extra sources to copy files from
 #_sources:
@@ -35,36 +41,35 @@ _min_copier_version: "9.0.0"
 # Ask the user for other project details
 
 project_name:
-#  when: "{{ template_type != 'common' }}"
   type: str
+  default: "{{ env['PROJECT_NAME'] | default('default_project_name') }}"
   help: What is the project name?
 
 package_name:
-#  when: "{{ template_type == 'project-lib' }}"
+  type: str
   default: "{{ project_name|lower }}"
   help: What is the project's python package name (should be small caps)?
 
 description:
-#  when: "{{ template_type != 'common' }}"
   type: str
   help: What is the project description?
 
 site_url:
-#  when: "{{ template_type != 'common' }}"
   type: str
+  default: https://{{ package_name }}.org
   help: What is the project's website URL?
 
 docs_url:
-#  when: "{{ template_type != 'common' }}"
   type: str
+  default: https://docs.{{ package_name }}.org
   help: What is the project's documentation URL?
 
 repo:
-#  when: "{{ template_type != 'common' }}"
   type: str
+  default: "{{ package_name }}-lib"
   help: What is the project's repository under EasyScience organization?
 
 year:
-#  when: "{{ template_type == 'common' }}"
+  default: 2025
   type: int
   help: What is the project's copyright year?
