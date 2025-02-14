@@ -1,19 +1,19 @@
 _min_copier_version: "9.0.0"
 
 # Ask the user which template type to use
-#template_type:
-#  type: str
-#  help: |
-#    Choose your template type:
-#    - `project`: Template for an project hub repository.
-#    - `project-lib`: Template for a Python library repository.
-#    - `project-app`: Template for a Qt QML desktop application repository.
-#    - `common`: Common files used across projects.
-#  choices:
-#    - project
-#    - project-lib
-#    - project-app
-#    - common
+template_type:
+  type: str
+  help: |
+    Choose your template type:
+    - `project`: Template for an project hub repository.
+    - `project-lib`: Template for a Python library repository.
+    - `project-app`: Template for a Qt QML desktop application repository.
+    - `common`: Common files used across projects.
+  choices:
+    - project
+    - project-lib
+    - project-app
+    - common
 
 # Define where to store answers
 #_answers_file: ".copier-answers_{{ template_type }}.yml"
@@ -22,10 +22,10 @@ _min_copier_version: "9.0.0"
 _answers_file: ".copier-answers.yml"
 
 # Set the main subdirectory dynamically based on user choice
-#_subdirectory: "templates/{{ template_type }}"
+_subdirectory: "templates/{{ template_type }}"
 
 # Dynamically set `_subdirectory` based on an environment variable, or fallback to 'templates/project'
-_subdirectory: "{{ COPIER_SUBDIRECTORY | default('templates/project') }}"
+#_subdirectory: "{{ COPIER_SUBDIRECTORY | default('templates/project') }}"
 
 # Define multiple extra sources to copy files from
 #_sources:
@@ -42,7 +42,7 @@ _subdirectory: "{{ COPIER_SUBDIRECTORY | default('templates/project') }}"
 
 project_name:
   type: str
-  default: "{{ env['PROJECT_NAME'] | default('default_project_name') }}"
+  #default: "{{ env['PROJECT_NAME'] | default('default_project_name') }}"
   help: What is the project name?
 
 package_name:
