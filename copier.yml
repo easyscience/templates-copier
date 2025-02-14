@@ -5,10 +5,10 @@ template_dir:
   type: str
   help: |
     Choose your template directory:
-      - `project-hub`: Template for a project hub repository (e.g. easyscience/diffraction).
-      - `python-lib`: Template for a Python package repository (e.g. easyscience/diffraction-lib).
-      - `desktop-app`: Template for a Qt QML desktop application repository (e.g. easyscience/diffraction-app).
-      - `common`: Common files used for both lib and app repositories.
+       - project-hub: Template for a project hub repository (e.g. easyscience/diffraction).
+       - python-lib: Template for a Python package repository (e.g. easyscience/diffraction-lib).
+       - desktop-app: Template for a Qt QML desktop application repository (e.g. easyscience/diffraction-app).
+       - common: Common files used for both lib and app repositories.
   choices:
     - project-hub
     - python-lib
@@ -16,7 +16,7 @@ template_dir:
     - common
 
 # Set the template directory dynamically based on user choice
-_subdirectory: {{ template_dir }}
+_subdirectory: 'templates/{{ template_dir }}'
 
 # Define where to store answers in the destination repository
 _answers_file: ".copier-answers.yml"
@@ -43,42 +43,42 @@ has_app:
 
 hub_repo:
   type: str
-  default: {{ project_name | replace("Easy", "") | lower }}
+  default: '{{ project_name | replace("Easy", "") | lower }}'
   help: What is the project hub repository under EasyScience organization (e.g. diffraction)?
 
 lib_repo:
-  when: "{{ has_lib }}"
+  when: '{{ has_lib }}'
   type: str
-  default: {{ project_name | replace("Easy", "") | lower }}
+  default: '{{ project_name | replace("Easy", "") | lower }}-lib'
   help: What is the project lib repository under EasyScience organization (e.g. diffraction-lib)?
 
 app_repo:
-  when: "{{ has_app }}"
+  when: '{{ has_app }}'
   type: str
-  default: {{ project_name | replace("Easy", "") | lower }}
+  default: '{{ project_name | replace("Easy", "") | lower }}-app'
   help: What is the project app repository under EasyScience organization (e.g. diffraction-app)?
 
 package_name:
-  when: "{{ has_lib }}"
+  when: '{{ has_lib }}'
   type: str
-  default: {{ project_name | lower }}
+  default: '{{ project_name | lower }}'
   help: What is the project's python package name (should be small caps)?
 
 hub_url:
   type: str
-  default: https://{{ package_name }}.org
+  default: 'https://{{ package_name }}.org'
   help: What is the project's website URL? If custom domain is not used, use the GitHub Pages URL, e.g. https://easyscience.github.io/diffraction
 
 lib_docs_url:
-  when: "{{ has_lib }}"
+  when: '{{ has_lib }}'
   type: str
-  default: https://docs.{{ package_name }}.org/lib
+  default: 'https://docs.{{ package_name }}.org/lib'
   help: What is the project's documentation URL?
 
 app_docs_url:
-  when: "{{ has_app }}"
+  when: '{{ has_app }}'
   type: str
-  default: https://docs.{{ package_name }}.org/lib
+  default: 'https://docs.{{ package_name }}.org/lib'
   help: What is the project's documentation URL?
 
 year:
