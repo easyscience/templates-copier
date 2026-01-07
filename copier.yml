@@ -3,7 +3,7 @@
 # Template selection
 # =============================================================================
 
-template_type:
+_type:
   type: str
   help: Which template do you want to use?
   choices:
@@ -27,19 +27,19 @@ lib_repo_name:
   type: str
   default: '{{ home_repo_name }}-lib'
   help: What is the project lib repository under EasyScience organization?
-  when: '{{ template_type == "lib" }}'
+  when: '{{ _type == "lib" }}'
 
 lib_package_name:
   type: str
   default: '{{ project_name | lower | replace("easy", "") }}'
   help: What is the project's python package name (should be small caps)?
-  when: '{{ template_type == "lib" }}'
+  when: '{{ _type == "lib" }}'
 
 lib_docs_url:
   type: str
   default: 'https://easyscience.github.io/{{ lib_repo_name }}'
   help: What is the project's library documentation URL?
-  when: '{{ template_type == "lib" }}'
+  when: '{{ _type == "lib" }}'
 
 ---
 # =============================================================================
@@ -50,13 +50,13 @@ app_repo_name:
   type: str
   default: '{{ home_repo_name }}-app'
   help: What is the project app repository under EasyScience organization?
-  when: '{{ template_type == "app" }}'
+  when: '{{ _type == "app" }}'
 
 app_docs_url:
   type: str
   default: 'https://easyscience.github.io/{{ app_repo_name }}'
   help: What is the project's application documentation URL?
-  when: '{{ template_type == "app" }}'
+  when: '{{ _type == "app" }}'
 
 ---
 # =============================================================================
@@ -66,4 +66,4 @@ app_docs_url:
 _subdirectory: template
 _answers_file: .copier-answers.yml
 _exclude:
-  - "*.partial.jinja"
+  - "_*"

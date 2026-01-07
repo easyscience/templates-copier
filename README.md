@@ -35,10 +35,10 @@ lib_docs_url: https://easyscience.github.io/peasy-lib
 
 ```bash
 # For a library project
-copier copy gh:easyscience/templates-copier . --data-file .project/project.yaml -d template_type=lib
+copier copy gh:easyscience/templates-copier . --data-file .project/project.yaml -d _type=lib
 
 # For an app project
-copier copy gh:easyscience/templates-copier . --data-file .project/project.yaml -d template_type=app
+copier copy gh:easyscience/templates-copier . --data-file .project/project.yaml -d _type=app
 ```
 
 ### Interactive mode
@@ -52,7 +52,7 @@ You'll be prompted to select `lib` or `app` template, then answer the relevant q
 ### Using a specific version/tag
 
 ```bash
-copier copy gh:easyscience/templates-copier . --vcs-ref=v1.0.0 -d template_type=lib
+copier copy gh:easyscience/templates-copier . --vcs-ref=v1.0.0 -d _type=lib
 ```
 
 ## Updating a project
@@ -80,15 +80,15 @@ templates-copier/
     ├── .gitignore.jinja          # Shared (always copied)
     ├── LICENSE.jinja             # Shared (always copied)
     ├── {{_copier_conf.answers_file}}.jinja
-    ├── {% if template_type == 'lib' %}README.md{% endif %}.jinja   # lib-only
-    ├── {% if template_type == 'app' %}README.md{% endif %}.jinja   # app-only
+    ├── {% if _type == 'lib' %}README.md{% endif %}.jinja   # lib-only
+    ├── {% if _type == 'app' %}README.md{% endif %}.jinja   # app-only
     └── .github/
         └── workflows/
             └── (CI workflow files with conditional names)
 ```
 
 **How conditional files work:**
-- Files named `{% if template_type == 'lib' %}filename{% endif %}.jinja` only appear when `template_type=lib`
+- Files named `{% if _type == 'lib' %}filename{% endif %}.jinja` only appear when `_type=lib`
 - Shared files (no condition) are always copied
 - Use `{% if %}` inside file content for conditional sections
 
