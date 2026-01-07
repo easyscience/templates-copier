@@ -7,8 +7,8 @@ template_type:
   type: str
   help: Which template do you want to use?
   choices:
-    Python library (e.g., diffraction-lib): lib
-    Application (e.g., diffraction-app): app
+    Python library: lib
+    Desktop application: app
   default: lib
 
 ---
