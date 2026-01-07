@@ -63,5 +63,7 @@ app_docs_url:
 # Template settings
 # =============================================================================
 
-_subdirectory: '{{ template_type }}'
+_subdirectory: template
 _answers_file: .copier-answers.yml
+_exclude:
+  - "*.partial.jinja"

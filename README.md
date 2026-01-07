@@ -73,19 +73,24 @@ copier update --data-file .project/project.yaml
 
 ```
 templates-copier/
-├── copier.yml              # Root config with template selection + all questions
-├── lib/                    # Library template files
-│   └── README.md.jinja
-├── app/                    # Application template files
-│   └── (template files)
-└── shared/
-    └── questions.yml       # Shared questions (included by root copier.yml)
+├── copier.yml                    # Root config with template selection + all questions
+├── shared/
+│   └── questions.yml             # Shared questions (included by copier.yml)
+└── template/                     # All template files (_subdirectory: template)
+    ├── .gitignore.jinja          # Shared (always copied)
+    ├── LICENSE.jinja             # Shared (always copied)
+    ├── {{_copier_conf.answers_file}}.jinja
+    ├── {% if template_type == 'lib' %}README.md{% endif %}.jinja   # lib-only
+    ├── {% if template_type == 'app' %}README.md{% endif %}.jinja   # app-only
+    └── .github/
+        └── workflows/
+            └── (CI workflow files with conditional names)
 ```
 
-The root `copier.yml` uses:
-- `!include shared/questions.yml` to include shared questions
-- `_subdirectory: '{{ template_type }}'` to dynamically select lib/ or app/
-- `when:` conditions to show template-specific questions only when relevant
+**How conditional files work:**
+- Files named `{% if template_type == 'lib' %}filename{% endif %}.jinja` only appear when `template_type=lib`
+- Shared files (no condition) are always copied
+- Use `{% if %}` inside file content for conditional sections
 
 ## Data File Location
 
