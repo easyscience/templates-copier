@@ -1,0 +1,22 @@
+---
+# shared questions
+
+!include ../shared/copier.yml
+
+---
+# app-only questions
+
+app_repo_name:
+  type: str
+  default: '{{ home_repo_name }}-app'
+  help: What is the project app repository under EasyScience organization (e.g. diffraction-app)?
+
+app_docs_url:
+  type: str
+  default: 'https://easyscience.github.io/{{ app_repo_name }}'
+  help: What is the project's application documentation URL?
+
+---
+# template settings
+
+_subdirectory: app

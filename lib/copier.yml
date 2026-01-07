@@ -1,0 +1,27 @@
+---
+# shared questions
+
+!include ../shared/copier.yml
+
+---
+# lib-only questions
+
+lib_repo_name:
+  type: str
+  default: '{{ home_repo_name }}-lib'
+  help: What is the project lib repository under EasyScience organization (e.g. diffraction-lib)?
+
+lib_package_name:
+  type: str
+  default: '{{ project_name | lower }}'
+  help: What is the project's python package name (should be small caps)?
+
+lib_docs_url:
+  type: str
+  default: 'https://easyscience.github.io/{{ lib_repo_name }}'
+  help: What is the project's library documentation URL?
+
+---
+# template settings
+
+_subdirectory: lib
