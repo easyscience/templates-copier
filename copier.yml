@@ -1,0 +1,67 @@
+---
+# =============================================================================
+# Template selection
+# =============================================================================
+
+template_type:
+  type: str
+  help: Which template do you want to use?
+  choices:
+    Python library (e.g., diffraction-lib): lib
+    Application (e.g., diffraction-app): app
+  default: lib
+
+---
+# =============================================================================
+# Shared questions (from shared/questions.yml)
+# =============================================================================
+
+!include shared/questions.yml
+
+---
+# =============================================================================
+# Lib-only questions
+# =============================================================================
+
+lib_repo_name:
+  type: str
+  default: '{{ home_repo_name }}-lib'
+  help: What is the project lib repository under EasyScience organization?
+  when: '{{ template_type == "lib" }}'
+
+lib_package_name:
+  type: str
+  default: '{{ project_name | lower | replace("easy", "") }}'
+  help: What is the project's python package name (should be small caps)?
+  when: '{{ template_type == "lib" }}'
+
+lib_docs_url:
+  type: str
+  default: 'https://easyscience.github.io/{{ lib_repo_name }}'
+  help: What is the project's library documentation URL?
+  when: '{{ template_type == "lib" }}'
+
+---
+# =============================================================================
+# App-only questions
+# =============================================================================
+
+app_repo_name:
+  type: str
+  default: '{{ home_repo_name }}-app'
+  help: What is the project app repository under EasyScience organization?
+  when: '{{ template_type == "app" }}'
+
+app_docs_url:
+  type: str
+  default: 'https://easyscience.github.io/{{ app_repo_name }}'
+  help: What is the project's application documentation URL?
+  when: '{{ template_type == "app" }}'
+
+---
+# =============================================================================
+# Template settings
+# =============================================================================
+
+_subdirectory: '{{ template_type }}'
+_answers_file: .copier-answers.yml
