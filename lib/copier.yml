@@ -1,10 +1,14 @@
 ---
-# shared questions
+# =============================================================================
+# Shared questions (from ../shared/copier.yml)
+# =============================================================================
 
 !include ../shared/copier.yml
 
 ---
-# lib-only questions
+# =============================================================================
+# Lib-only questions
+# =============================================================================
 
 lib_repo_name:
   type: str
@@ -22,6 +26,8 @@ lib_docs_url:
   help: What is the project's library documentation URL?
 
 ---
-# template settings
+# =============================================================================
+# Template settings
+# =============================================================================
 
-_subdirectory: lib
+_answers_file: .copier-answers.yml

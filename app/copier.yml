@@ -1,10 +1,14 @@
 ---
-# shared questions
+# =============================================================================
+# Shared questions (from ../shared/copier.yml)
+# =============================================================================
 
 !include ../shared/copier.yml
 
 ---
-# app-only questions
+# =============================================================================
+# App-only questions
+# =============================================================================
 
 app_repo_name:
   type: str
@@ -17,6 +21,8 @@ app_docs_url:
   help: What is the project's application documentation URL?
 
 ---
-# template settings
+# =============================================================================
+# Template settings
+# =============================================================================
 
-_subdirectory: app
+_answers_file: .copier-answers.yml
