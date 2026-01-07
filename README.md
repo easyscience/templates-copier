@@ -16,10 +16,9 @@ Reusable [Copier](https://copier.readthedocs.io/) templates for EasyScience proj
 1. Create a `.project/project.yaml` file in your target project with your answers:
 
 ```yaml
-template_type: lib  # or "app"
 project_name: EasyPeasy
 project_short_description: Imaginary data analysis
-project_extended_description: For performing imaginary calculations based on a theoretical model
+project_extended_description: For performing imaginary calculations based on a theoretical model and refining its parameters against experimental data
 project_copyright_years: 2021-2026
 home_repo_name: peasy
 homepage_url: https://easyscience.github.io/peasy
@@ -32,16 +31,20 @@ lib_docs_url: https://easyscience.github.io/peasy-lib
 # app_docs_url: https://easyscience.github.io/peasy-app
 ```
 
-2. Run Copier with the `--data-file` option:
+2. Run Copier with the `--data-file` option and specify the template type:
 
 ```bash
-copier copy gh:easyscience/templates-copier . --trust --data-file .project/project.yaml
+# For a library project
+copier copy gh:easyscience/templates-copier . --data-file .project/project.yaml -d template_type=lib
+
+# For an app project
+copier copy gh:easyscience/templates-copier . --data-file .project/project.yaml -d template_type=app
 ```
 
 ### Interactive mode
 
 ```bash
-copier copy gh:easyscience/templates-copier . --trust
+copier copy gh:easyscience/templates-copier .
 ```
 
 You'll be prompted to select `lib` or `app` template, then answer the relevant questions.
@@ -49,7 +52,7 @@ You'll be prompted to select `lib` or `app` template, then answer the relevant q
 ### Using a specific version/tag
 
 ```bash
-copier copy gh:easyscience/templates-copier . --trust --vcs-ref=v1.0.0
+copier copy gh:easyscience/templates-copier . --vcs-ref=v1.0.0 -d template_type=lib
 ```
 
 ## Updating a project
@@ -57,7 +60,13 @@ copier copy gh:easyscience/templates-copier . --trust --vcs-ref=v1.0.0
 To update an existing project with template changes:
 
 ```bash
-copier update --trust
+copier update
+```
+
+Or with updated data file:
+
+```bash
+copier update --data-file .project/project.yaml
 ```
 
 ## Project Structure
@@ -70,11 +79,11 @@ templates-copier/
 ├── app/                    # Application template files
 │   └── (template files)
 └── shared/
-    └── copier.yml          # Shared questions (included by root copier.yml)
+    └── questions.yml       # Shared questions (included by root copier.yml)
 ```
 
 The root `copier.yml` uses:
-- `!include shared/copier.yml` to include shared questions
+- `!include shared/questions.yml` to include shared questions
 - `_subdirectory: '{{ template_type }}'` to dynamically select lib/ or app/
 - `when:` conditions to show template-specific questions only when relevant
 
