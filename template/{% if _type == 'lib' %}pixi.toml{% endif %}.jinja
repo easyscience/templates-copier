@@ -43,11 +43,11 @@ channels = ['conda-forge']
 gsl = '*' # GNU Scientific Library; required for pdffit2.
 
 [pypi-dependencies] # == [feature.default.pypi-dependencies]
-pip = '*'                                                    # Native package installer
-uv = '*'                                                     # Package manager
-jupyterlab = '*'                                             # Jupyter notebooks
-pixi-kernel = '*'                                            # Pixi Jupyter kernel
-{{ lib_package_name }} = { version = '*', extras = ['all'] } # Main package
+pip = '*'         # Native package installer
+uv = '*'          # Package manager
+jupyterlab = '*'  # Jupyter notebooks
+pixi-kernel = '*' # Pixi Jupyter kernel
+{{ lib_package_name }} = { path = ".", editable = true, extras = ['all'] } # Main package
 
 # Specific features
 
