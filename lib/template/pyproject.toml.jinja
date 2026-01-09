@@ -20,7 +20,7 @@ classifiers = [
   'Programming Language :: Python :: 3.{{version}}',
   {%- endfor %}
 ]
-requires-python = '>={{ lib_python_min }},<{{ lib_python_max }}'
+requires-python = '>={{ lib_python_min }}'
 dependencies = [
   'easyscience', # The base library of the EasyScience framework
   'pooch',       # Data downloader
