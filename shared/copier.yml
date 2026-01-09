@@ -1,7 +1,6 @@
+---
 # =============================================================================
-# Shared questions
-# =============================================================================
-# This file is included by lib/copier.yml and app/copier.yml using !include
+# Shared questions for all EasyScience templates
 # =============================================================================
 
 project_name:
@@ -35,3 +34,13 @@ homepage_url:
   type: str
   default: 'https://easyscience.github.io/{{ home_repo_name }}'
   help: What is the project's website URL?
+
+---
+# =============================================================================
+# Template settings
+# =============================================================================
+
+_subdirectory: template
+_answers_file: .copier-answers.shared.yml
+_exclude:
+  - "_*"

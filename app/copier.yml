@@ -1,0 +1,24 @@
+---
+# =============================================================================
+# App-specific questions
+# =============================================================================
+
+app_repo_name:
+  type: str
+  default: '{{ home_repo_name }}-app'
+  help: What is the project app repository under EasyScience organization?
+
+app_docs_url:
+  type: str
+  default: 'https://easyscience.github.io/{{ app_repo_name }}'
+  help: What is the project's application documentation URL?
+
+---
+# =============================================================================
+# Template settings
+# =============================================================================
+
+_subdirectory: template
+_answers_file: .copier-answers.app.yml
+_exclude:
+  - "_*"
